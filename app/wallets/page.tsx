@@ -122,6 +122,7 @@ export default function Home() {
             {wallets.length > 0
               ? wallets.map((wallet, index) => (
                   <Wallet
+                    key={index}
                     wallet={wallet}
                     setActiveIndex={setActiveIndex}
                     index={index + 1}
@@ -142,7 +143,7 @@ function Wallet({
 }: {
   index: number;
   wallet: wallet;
-  setActiveIndex: (index: number) => void;
+  setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
 }) {
   return (
     <AccordionItem
@@ -169,7 +170,7 @@ function Wallet({
         </div>
         <div className="flex justify-between px-10 items-center">
           <span className="text-sm">
-            Private Key: don't share your private key at any cost
+            Private Key: never share your private key at any cost
           </span>
           <Button
             onClick={() => {

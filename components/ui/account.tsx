@@ -73,7 +73,10 @@ function MnemonicDialog({ password }: { password?: string }) {
   }
 
   async function onSaveSeed() {
-    //@ts-ignore
+    if (!mnemonic) {
+      toast.error("Please generate a mnemonic first");
+      return;
+    }
     const seed = await getSeed(mnemonic, password);
     setSeed(seed);
     setItemInLocalStorage<string>("seed", seed);
