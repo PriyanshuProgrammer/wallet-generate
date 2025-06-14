@@ -12,7 +12,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           "--normal-text": "white",
         } as React.CSSProperties
       }
-      position="top-center"
+      position="top-right"
       {...props}
     />
   );
