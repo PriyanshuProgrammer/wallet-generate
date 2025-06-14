@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import {
   Dialog,
@@ -16,11 +16,24 @@ import { CopyIcon } from "lucide-react";
 import { toast } from "sonner";
 import { useSetAtom } from "jotai";
 import { seed } from "@/lib/store";
-import { setItemInLocalStorage } from "@/lib/localstorage";
+import {
+  getItemFromLocalStorage,
+  setItemInLocalStorage,
+} from "@/lib/localstorage";
 import { useRouter } from "next/navigation";
 
 export function Account() {
+  const router = useRouter();
+  const setSeed = useSetAtom(seed);
   const passwordRef = React.useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    const savedSeed = getItemFromLocalStorage("seed");
+    if (savedSeed) {
+      setSeed(savedSeed);
+      router.push("/wallets");
+    }
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center my-auto">
       <span className="p-2 mb-10 text-sm rounded-full border-1 border-zinc-500 text-white">

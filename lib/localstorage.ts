@@ -1,6 +1,6 @@
-type wallet = {
-  publicKey: string;
-  privateKey: string;
+export type wallet = {
+  publickey: string;
+  privatekey: string;
 };
 export type wallets = Array<wallet>;
 type keys = "wallets" | "seed";
